@@ -4,6 +4,6 @@ COPY requirements.txt ./
 RUN pip install -r requirements.txt 
 
 COPY bot bot 
-COPY run.py boot.sh ./
+COPY run.py ./
 
-CMD ./boot.sh
+CMD ["python3", "run.py"]
