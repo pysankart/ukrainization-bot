@@ -1,5 +1,9 @@
 # Python cache
 __pycache__
 
-# Python virtual environment
-venv
+# Pytest
+.pytest_cache
+.coverage
+
+# Environment variables
+.env

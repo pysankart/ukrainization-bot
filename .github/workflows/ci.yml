@@ -1,0 +1,36 @@
+name: continuous-integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements/production.txt
+
+      - name: Run tests with pytest
+        run: |
+          pip install pytest
+          pip install pytest-asyncio
+          pytest -v
+
+      - name: Lint code with flake8
+        run: |
+          pip install flake8
+          flake8 . --ignore=E501
